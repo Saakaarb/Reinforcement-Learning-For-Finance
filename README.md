@@ -24,7 +24,7 @@ The repository contains HW codes and Latex files(to be added), corresponding to 
 
 Written below is a corrpespondance of date of assigned homeworks, and the files it is contained in:
 
-Jan 10: simulate_mrp.py, mrp.py,mdp.py
+Jan 10: simulate_mrp.py, mrp.py,mdp.py  
 Jan 15: simulate_mdp.py, mdp.py,
 
 simulate_* files are test cases created to test the scripts. Most are from classroom examples.
