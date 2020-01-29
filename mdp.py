@@ -1,11 +1,55 @@
 import numpy as np
 import math
 from copy import deepcopy
-
+from typing import List, Dict
 # Contains modular functions for MDPs
 
 
-def evaluate_policy(S,A,P,R,gamma,pi): # For a deterministic policy, return value function
+def value_iteration(S:List,A:List,P:List,R:List,gamma:float,pi:List)->List:
+
+    # S: vector of possible states
+    # A: vector of all possible actions
+    # P: 3-D matrix for every state, probability of going to a next state. shape: P(a,s,s')
+    # R: 2-D Matrix for every state, reward of taking every action, shape: R(a,s)
+    # gamma: Discount Factor
+    # pi: 2-D policy Matrix , shape: pi(s,a)
+
+    num_states=S.shape[0];
+    num_actions=A.shape[0];
+
+    vk=np.zeros([num_states]);
+    vk2=np.zeros([num_states]);
+    action_vec=np.zeros([num_states])-1;
+    assert (R.shape[0]== pi.shape[1]),"R(s,a), pi(a|s) dimension mismatch"
+    assert (pi.shape[1]==P.shape[0]),"P(s,a,s'), pi(a|s) dimension mismatch"
+    count=0;
+    while True:
+        
+        best_action=np.zeros([num_states])-1;
+        for s in range(num_states):
+            action_value=float("-inf")
+            action_temp=-1;
+            for a in range(num_actions):
+                
+                if np.any(P[a,s,:]>0):
+                 
+                    v_temp=R[a,s]+gamma*np.dot(P[a,s,:],vk);
+                    if v_temp > action_value:
+                        action_value=v_temp;
+                        action_temp=a;
+            vk2[s]=action_value;
+            best_action[s]=action_temp
+        action_vec=deepcopy(best_action)
+        count=count+1;
+        if np.all(vk2==vk):
+            break;
+        else:
+            vk=deepcopy(vk2);
+            continue;
+    return best_action,vk;
+
+
+def evaluate_policy(S:List,A:List,P:List,R:List,gamma:float,pi:List)->List: # For a particular policy, return value function
     # S: vector of possible states
     # A: vector of all possible actions
     # P: 3-D matrix for every state, probability of going to a next state. shape: P(a,s,s')
@@ -37,7 +81,7 @@ def evaluate_policy(S,A,P,R,gamma,pi): # For a deterministic policy, return valu
             break;
     return vk2
 
-def policy_iteration(S,A,P,R,gamma,pi): # Starting with a certain policy, iterate to optimal policy
+def policy_iteration(S:List,A:List,P:List,R:List,gamma:float,pi:List): # Starting with a certain policy, iterate to optimal policy
 
     num_states=len(S);
     num_actions=len(A)
@@ -49,7 +93,6 @@ def policy_iteration(S,A,P,R,gamma,pi): # Starting with a certain policy, iterat
         pi_dash=improve_policy(S,A,P,vi); # Policy Improvement Step;
         vk=evaluate_policy(S,A,P,R,gamma,pi_dash);# Next Policy Evaluation step
         count_iter=count_iter+1;
-        print(count_iter)
         if np.all(vk==vi) or count_iter==10000:  # At optimal policy, pi_dash=pi* and vk=v* , will be same as prev iteration
             
             break;
@@ -70,7 +113,7 @@ def policy_iteration(S,A,P,R,gamma,pi): # Starting with a certain policy, iterat
 
     return best_action,vk;
 
-def improve_policy(S,A,P,vk): # Policy improvement step
+def improve_policy(S:List,A:List,P:List,vk:List): # Policy improvement step
 
     # S: vector of possible states
     # A: vector of all possible actions
@@ -103,7 +146,6 @@ def improve_policy(S,A,P,vk): # Policy improvement step
         best_action[s]=state_bestaction
 
     #convert best action vector to immediate greedy policy
-    print(best_action) 
     for s in range(num_states):
         pi_dash[s,int(best_action[s])]=1;
 
@@ -112,7 +154,7 @@ def improve_policy(S,A,P,vk): # Policy improvement step
 
 
 
-def create_MDP(S,A,P_dict,R_dict,gamma,pi_dict): # Given a dictionary for P,R,pi, create relevant matrices
+def create_MDP(S:List,A:List,P_dict:Dict,R_dict:Dict,gamma:float,pi_dict:Dict): # Given a dictionary for P,R,pi, create relevant matrices
 
     # S: vector of possible states
     # A: vector of all possible actions

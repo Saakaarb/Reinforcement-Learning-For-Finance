@@ -84,9 +84,10 @@ if __name__=="__main__":
     
     [S,A,P,R,gamma,pi]=mdp.create_MDP(S,A,P_dict,R_dict,gamma,pi_dict) # Creates the relevant matrices for the gridworld
     
-    vi=evaluate_policy(S,A,P,R,gamma,pi);# Evaluates Initial random policy, Pg 12 of DP lecture
+    vi=mdp.evaluate_policy(S,A,P,R,gamma,pi);# Evaluates Initial random policy, Pg 12 of DP lecture
     print(vi)                            # Printed values are different due to round offs in lecture numbers
     best_action,vk=mdp.policy_iteration(S,A,P,R,gamma,pi);# Policy Iteration to find the best policy
     print(best_action)                   # Acc to the code, it finds only 1 best action for a given state, in decreasing priority of 
-                                                                                                                    #action vector
-
+                                                                                                                        #action vector
+    best_action_2,vk=mdp.value_iteration(S,A,P,R,gamma,pi);
+    print(best_action_2)
