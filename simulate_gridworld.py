@@ -88,6 +88,11 @@ if __name__=="__main__":
     print(vi)                            # Printed values are different due to round offs in lecture numbers
     best_action,vk=mdp.policy_iteration(S,A,P,R,gamma,pi);# Policy Iteration to find the best policy
     print(best_action)                   # Acc to the code, it finds only 1 best action for a given state, in decreasing priority of 
+<<<<<<< HEAD
                                                                                                                         #action vector
     best_action_2,vk=mdp.value_iteration(S,A,P,R,gamma,pi);
     print(best_action_2)
+=======
+                                                                                                                    #action vector
+
+>>>>>>> 513a8ceb6a5718104300190a413e7ddbfb748a2a
