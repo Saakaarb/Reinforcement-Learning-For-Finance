@@ -1,13 +1,12 @@
 import numpy as np
 import math
 from copy import deepcopy
-<<<<<<< HEAD
 from typing import List, Dict
 # Contains modular functions for MDPs
 
 
 def value_iteration(S:List,A:List,P:List,R:List,gamma:float,pi:List)->List:
-
+    #Input: ------------------------
     # S: vector of possible states
     # A: vector of all possible actions
     # P: 3-D matrix for every state, probability of going to a next state. shape: P(a,s,s')
@@ -15,6 +14,9 @@ def value_iteration(S:List,A:List,P:List,R:List,gamma:float,pi:List)->List:
     # gamma: Discount Factor
     # pi: 2-D policy Matrix , shape: pi(s,a)
 
+    #Output:-----------------------
+    #best_action: Optimal Policy
+    #optimal Value function
     num_states=S.shape[0];
     num_actions=A.shape[0];
 
@@ -51,19 +53,16 @@ def value_iteration(S:List,A:List,P:List,R:List,gamma:float,pi:List)->List:
 
 
 def evaluate_policy(S:List,A:List,P:List,R:List,gamma:float,pi:List)->List: # For a particular policy, return value function
-=======
-
-# Contains modular functions for MDPs
-
-
-def evaluate_policy(S,A,P,R,gamma,pi): # For a deterministic policy, return value function
->>>>>>> 513a8ceb6a5718104300190a413e7ddbfb748a2a
+    #Input:--------------------------------
     # S: vector of possible states
     # A: vector of all possible actions
     # P: 3-D matrix for every state, probability of going to a next state. shape: P(a,s,s')
     # R: 2-D Matrix for every state, reward of taking every action, shape: R(a,s)
     # gamma: Discount Factor
     # pi: 2-D policy Matrix , shape: pi(s,a)
+
+    # Output:--------------------
+    # vk2: Value function for evaluated policy
 
     num_states=S.shape[0];
     num_actions=A.shape[0];
@@ -89,11 +88,7 @@ def evaluate_policy(S,A,P,R,gamma,pi): # For a deterministic policy, return valu
             break;
     return vk2
 
-<<<<<<< HEAD
 def policy_iteration(S:List,A:List,P:List,R:List,gamma:float,pi:List): # Starting with a certain policy, iterate to optimal policy
-=======
-def policy_iteration(S,A,P,R,gamma,pi): # Starting with a certain policy, iterate to optimal policy
->>>>>>> 513a8ceb6a5718104300190a413e7ddbfb748a2a
 
     num_states=len(S);
     num_actions=len(A)
@@ -105,10 +100,6 @@ def policy_iteration(S,A,P,R,gamma,pi): # Starting with a certain policy, iterat
         pi_dash=improve_policy(S,A,P,vi); # Policy Improvement Step;
         vk=evaluate_policy(S,A,P,R,gamma,pi_dash);# Next Policy Evaluation step
         count_iter=count_iter+1;
-<<<<<<< HEAD
-=======
-        print(count_iter)
->>>>>>> 513a8ceb6a5718104300190a413e7ddbfb748a2a
         if np.all(vk==vi) or count_iter==10000:  # At optimal policy, pi_dash=pi* and vk=v* , will be same as prev iteration
             
             break;
@@ -129,18 +120,17 @@ def policy_iteration(S,A,P,R,gamma,pi): # Starting with a certain policy, iterat
 
     return best_action,vk;
 
-<<<<<<< HEAD
 def improve_policy(S:List,A:List,P:List,vk:List): # Policy improvement step
-=======
-def improve_policy(S,A,P,vk): # Policy improvement step
->>>>>>> 513a8ceb6a5718104300190a413e7ddbfb748a2a
-
+    # Input:----------------------------------
     # S: vector of possible states
     # A: vector of all possible actions
     # P: 3-D matrix for every state, probability of going to a next state. shape: P(a,s,s')
     # R: 2-D Matrix for every state, reward of taking every action. shape: R(a,s)
     # gamma: Discount Factor
     # pi: 2-D policy Matrix , shape: pi(s,a)
+
+    #Output:---------------------------------
+    #pi_dash: Improved Policy Matrix: shape(s,a)
     num_states=len(S);
     num_actions=len(A)
     pi_dash=np.zeros([num_states,num_actions]);
@@ -166,10 +156,6 @@ def improve_policy(S,A,P,vk): # Policy improvement step
         best_action[s]=state_bestaction
 
     #convert best action vector to immediate greedy policy
-<<<<<<< HEAD
-=======
-    print(best_action) 
->>>>>>> 513a8ceb6a5718104300190a413e7ddbfb748a2a
     for s in range(num_states):
         pi_dash[s,int(best_action[s])]=1;
 
@@ -178,19 +164,21 @@ def improve_policy(S,A,P,vk): # Policy improvement step
 
 
 
-<<<<<<< HEAD
 def create_MDP(S:List,A:List,P_dict:Dict,R_dict:Dict,gamma:float,pi_dict:Dict): # Given a dictionary for P,R,pi, create relevant matrices
-=======
-def create_MDP(S,A,P_dict,R_dict,gamma,pi_dict): # Given a dictionary for P,R,pi, create relevant matrices
->>>>>>> 513a8ceb6a5718104300190a413e7ddbfb748a2a
-
+    # Input:--------------------------------
     # S: vector of possible states
     # A: vector of all possible actions
-    # P: Nested Dictionary for every state, probability of going to a next state.
-    # R: Nested Dictionary for every state, reward of taking every action
+    # P_dict: Nested Dictionary for every state, probability of going to a next state. Format: (s->a->s');
+    # R_dict: Nested Dictionary for every state, reward of taking every action. Format(State->Action->Reward);
     # gamma: Discount Factor
-    # pi:Nested Dictionary
+    # pi:Nested Dictionary: Format(State->Action->Probability of action);
     
+    #Output:--------------------------------
+    # S: vector of possible states
+    # A: vector of all possible actions
+    # P: Matrix of transition Probabilties: shape(a,s,s')
+    # R: Matrix of Transition Rewards: shape(a,s);
+    # pi: Policy Matrix: shape: (s,a)
     num_states=S.shape[0];
     num_actions=A.shape[0];
     
