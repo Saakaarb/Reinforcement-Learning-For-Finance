@@ -23,10 +23,14 @@ The repository contains HW codes and Latex files(to be added), corresponding to 
 * simulate_studentmrp.py:
   * The file has inputs for the student MDP problem dicussed in class with gamm=0.9. MRP functions are tested on this.
 
+* merton_discrete.py:
+  * IN PROGRESS: Solution of discrete merton assignment
+
 Written below is a corrpespondance of date of assigned homeworks, and the files it is contained in:
 
 Jan 10: simulate_studentmrp.py, mrp.py,mdp.py  
-Jan 15,17: simulate_gridworld.py, mdp.py,
+Jan 15,17: simulate_gridworld.py, mdp.py
+Jan 22: merton_discrete.py
 
 simulate_* files are test cases created to test the scripts. Most are from classroom examples.
 
