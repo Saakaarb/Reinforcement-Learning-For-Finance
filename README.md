@@ -7,8 +7,8 @@ The repository contains HW codes and Latex files(to be added), corresponding to 
 Written below is a corrpespondance of date of assigned homeworks, and the files it is contained in:
 
 Jan 10: simulate_studentmrp.py, mrp.py,mdp.py  
-Jan 15,17: simulate_gridworld.py, mdp.py
-Jan 22: Assignment1_code, Assignment1.pdf
+Jan 15,17: simulate_gridworld.py, mdp.py  
+Jan 22: Assignment1_code, Assignment1.pdf  
 
 
 
