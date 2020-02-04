@@ -19,7 +19,7 @@ Possible values of Wealth: [0.01,1] discretized into 25 uniform intervals
 
 Therefore States of the form (t,Wt): Set product of the time and Wt vectors.The final plot of optimal policy versus time looks like:
 
-![Screenshot1](u_velocity_TURNS.jpg)
+![Screenshot1](policyplot.png)
 
 MDP is solved using policy iteration, by taking a random policy to begin with.
 
