@@ -17,6 +17,8 @@ The code with current parameters solves for a put option problem, with the follo
  
  ![Screenshot1](results_screenshot.png)
  
+ Therefore, where the discounted value function is lesser than the immediate payoff from exercising the option, we take action 1, which is use option. 0 means keep option. This way we can also price the option, the difference between the immediate payoff and the expected discounted value function at any time is the no-arbitrage price of the option. The values for the leaf nodes are not included, since at those nodes the solution is trivial.  
+ 
  The problem parameters and solution is corroborated by the tutorial problem at the following link: https://www.youtube.com/watch?v=35n7TICJbLc
 
 
