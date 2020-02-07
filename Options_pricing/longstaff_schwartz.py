@@ -3,10 +3,9 @@ import math
 from matplotlib import pyplot as plt
 import random
 from copy import deepcopy
+
 def decision(probability):
     return random.random() < probability
-
-
 
 
 def monte_carlo(T,dt,q,S0,increase,decrease):
