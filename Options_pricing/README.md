@@ -22,3 +22,6 @@ The code with current parameters solves for a put option problem, with the follo
  The problem parameters and solution is corroborated by the tutorial problem at the following link: https://www.youtube.com/watch?v=35n7TICJbLc
 
 
+**longstaff_schwartz.py**
+
+UNDERGOING debugging: Implementation of the longstaff_schwartz algorithm for the above problem. Features described in slides are used.
