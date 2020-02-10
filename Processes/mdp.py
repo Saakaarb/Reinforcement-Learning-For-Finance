@@ -34,12 +34,11 @@ def value_iteration(S:List,A:List,P:List,R:List,gamma:float,pi:List)->List:
             action_temp=-1;
             for a in range(num_actions):
                 
-                if np.any(P[a,s,:]>0):
                  
-                    v_temp=R[a,s]+gamma*np.dot(P[a,s,:],vk);
-                    if v_temp > action_value:
-                        action_value=v_temp;
-                        action_temp=a;
+                v_temp=R[a,s]+gamma*np.dot(P[a,s,:],vk);
+                if v_temp > action_value:
+                    action_value=v_temp;
+                    action_temp=a;
             vk2[s]=action_value;
             best_action[s]=action_temp
         action_vec=deepcopy(best_action)
