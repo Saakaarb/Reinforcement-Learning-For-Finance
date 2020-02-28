@@ -22,7 +22,7 @@ The parameters used in the problem were as follows:
 lambd=0.9  
 alpha=10**(-2)  
 n_episodes=25000  
-gamma=1  
+gamma=0.8 
 
 The solution through dynamic programming and both the above mentioned algorithms is plotted below:
 
@@ -41,7 +41,7 @@ lambd=0.9
 alpha=10**(-2)  
 n_episodes=30000  
 eps=0.1  
-
+gamma=1  
 The result for SARSA-LAMBDA is as shown:
 
 ![Screenshot2](comp2.png)
