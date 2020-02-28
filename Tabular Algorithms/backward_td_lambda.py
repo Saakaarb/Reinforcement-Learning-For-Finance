@@ -12,19 +12,17 @@ def bwd_td_lambda_update_offline(gamma:float,lambd:float,alpha:float,ini_state:i
 
     # Update V for ONE EPISODE, until termination or convergence
 
-    #V_new=np.zeros([len(state_space)])
     
     next_state,next_action,reward=sampler.sample_next(ini_state,ini_action); # get values from sampler,actual MDP hidden from function
     current_state=ini_state
     update_counter=0
     accumulated_change=np.zeros([len(state_space)])
-    #print(next_state,next_action,reward)
     while (next_state is not None and next_action is not None) and gamma**(update_counter)>10**(-5) : # None for either implies terminal state
         
         delta_t=reward+gamma*V[next_state]-V[current_state]
         for i_E in range(len(E)):
 
-            if i_E==current_state:
+            if i_E==current_state: # Update Eligibility traces
                 increment=1
             else:
                 increment=0
@@ -34,10 +32,9 @@ def bwd_td_lambda_update_offline(gamma:float,lambd:float,alpha:float,ini_state:i
        
         current_state=next_state
         current_action=next_action
-     #   print("Looped")
         next_state,next_action,reward=sampler.sample_next(current_state,current_action)
     
-    V_new=np.array(V)+accumulated_change
+    V_new=np.array(V)+accumulated_change # offline update
     return [V_new,E]
 
 
@@ -50,13 +47,12 @@ def bwd_td_lambda_update_online(gamma:float,lambd:float,alpha:float,ini_state:in
     next_state,next_action,reward=sampler.sample_next(ini_state,ini_action); # get values from sampler,actual MDP hidden from function
     current_state=ini_state
     update_counter=0
-    #print(next_state,next_action,reward)
     while (next_state is not None and next_action is not None) and gamma**(update_counter)>10**(-5) : # None for either implies terminal state
 
         delta_t=reward+gamma*V[next_state]-V[current_state]
         for i_E in range(len(E)):
 
-            if i_E==current_state:
+            if i_E==current_state:i     # Eligibility trace
                 increment=1
             else:
                 increment=0
@@ -65,12 +61,11 @@ def bwd_td_lambda_update_online(gamma:float,lambd:float,alpha:float,ini_state:in
 
         for i_state in range(len(state_space)):
 
-            V_new[i_state]=V[i_state]+alpha*delta_t*E[i_state]
+            V_new[i_state]=V[i_state]+alpha*delta_t*E[i_state] # Update equation online
         update_counter=update_counter+1
 
         current_state=next_state
         current_action=next_action
-     #   print("Looped")
         next_state,next_action,reward=sampler.sample_next(current_state,current_action)
         V=deepcopy(V_new)
     return [V,E]
@@ -80,6 +75,9 @@ def bwd_td_lambda_update_online(gamma:float,lambd:float,alpha:float,ini_state:in
 
 def bwd_td_lambda(gamma:float,lambd:float,alpha:float,n_episodes:int,state_space:range,action_space:range,terminal_states:List[int],sampler:Callable,mode="online")-> List[float]:
 
+    # Main function to use : returns converged value function for model-free prediction using backward TD_lambda
+
+
     num_states=len(state_space)
     # Initialize V
     V=np.zeros([num_states])
@@ -88,7 +86,6 @@ def bwd_td_lambda(gamma:float,lambd:float,alpha:float,n_episodes:int,state_space
 
     i_episodes=0;
     while i_episodes < n_episodes:
-        #print(i_episodes)
         ini_state=np.random.choice(state_space)
         ini_action=np.random.choice(action_space)
         if mode=="online":
