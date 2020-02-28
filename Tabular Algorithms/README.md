@@ -11,10 +11,10 @@ The algorithms covered are:
 The policy I aimed at imitating is the random policy shown in the lecture slides.  
 The parameters used in the problem were as follows:  
 
-lambd=0.9
-alpha=10**(-2)
-n_episodes=25000
-gamma=1
+lambd=0.9  
+alpha=10**(-2)  
+n_episodes=25000  
+gamma=1  
 
 The solution through dynamic programming and both the above mentioned algorithms is plotted below:
 
@@ -29,10 +29,10 @@ Aimed to learn the optimal policy and the optimal value function through both th
 
 The parameters I used in both algorithms were the same, as described below:  
 
-lambd=0.9
-alpha=10**(-2)
-n_episodes=30000
-eps=0.1
+lambd=0.9  
+alpha=10**(-2)  
+n_episodes=30000  
+eps=0.1  
 
 The result for SARSA-LAMBDA is as shown:
 
