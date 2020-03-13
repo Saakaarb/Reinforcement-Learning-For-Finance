@@ -3,9 +3,10 @@ import math
 from matplotlib import pyplot as plt
 import random
 from copy import deepcopy
-
 def decision(probability):
     return random.random() < probability
+
+
 
 
 def monte_carlo(T,dt,q,S0,increase,decrease):
@@ -128,7 +129,7 @@ if __name__=="__main__":
     dt=0.5;
     increase=1.2;
     decrease=0.8;
-    m=20;
+    m=60;
     r=0.05;
     K=100;
     S0=100;
