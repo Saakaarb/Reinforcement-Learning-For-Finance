@@ -24,4 +24,7 @@ The code with current parameters solves for a put option problem, with the follo
 
 **longstaff_schwartz.py**
 
-Implementation of the longstaff_schwartz algorithm for the above problem. Features described in slides are used. The printed output corresponds to Payoff of exercise, and the expected payoff of not exercising for the current time step. Values corroborated by previous problem.
+Implementation of the longstaff_schwartz algorithm for the above problem. Features described in slides are used. The printed output corresponds to Payoff of exercise, and the expected payoff of not exercising for the current time step. Values corroborated by previous problem.  
+
+**LSPI**  
+Implementation of the LSPI algorithm using the same feature functions as longstaff_schwartz. The code is applied to the same problem demonstrated above in the binary tree.
