@@ -8,7 +8,7 @@ Code for to create and solve MDPs and MRPs baed on user input, and code for test
 **Assignment 1**  
 Contains pdf of the solution, as well a code to attempt solving the problem given.  
 **options_pricing**  
-Codes for optimal option exercising/ no arbitrage pricing
+Codes for optimal option exercising/ no arbitrage pricing. Contains Binary Tree Search, Longstaff_Schwartz Algorithm and LSPI for american put option pricing, as the mini-project. The codes can be run to obtain results at t=0. More description within folder.  
 
 **Mathematical Writing**  
 Contains PDFS of suggested theory assignments
