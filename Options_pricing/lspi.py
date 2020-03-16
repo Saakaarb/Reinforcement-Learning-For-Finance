@@ -32,7 +32,7 @@ def monte_carlo(T:float,dt:float,q:float,S0:float,increase:float,decrease:float)
     
     return SP
 
-def create_simulatedpaths(T,dt,q,S0,increase,decrease,m)-> List[List[float],List[float]]:
+def create_simulatedpaths(T,dt,q,S0,increase,decrease,m)-> List[List[float]]:
     
     #Return square matrix of shape: (num simulated paths, num timesteps);
     
